@@ -1,0 +1,105 @@
+/*import 'package:flutter/material.dart';
+import 'package:emoji_picker/emoji_picker.dart';
+import 'package:login/widget.dart';
+
+void main() => runApp(MyApp1());
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Flutter Emoji Picker Example",
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Emoji Picker Example"),
+        ),
+        body: MainPage(),
+      ),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+   var image;
+  MainPage({Key key, this.image}) : super(key: key);
+  @override
+  MainPageState createState() => new MainPageState();
+}
+
+class MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    body:Container(
+    child:  Column(
+          children: <Widget>[
+          //  widget.image == null
+          new Image.file(widget.image),
+         // Image.network(widget.image),
+               // : new Image.file(widget.image),
+   
+     //  Navigator.push(
+     //     context, new MaterialPageRoute(builder: (context) => new CustomBottomNavigationBar()));},
+            ]  ),),
+    );
+  }
+}*/
+import 'package:video_player/video_player.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(VideoApp());
+
+class VideoApp extends StatefulWidget {
+  @override
+  _VideoAppState createState() => _VideoAppState();
+}
+
+class _VideoAppState extends State<VideoApp> {
+  VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network(
+        'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Video Demo',
+      home: Scaffold(
+        body: Center(
+          child: _controller.value.initialized
+              ? AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                )
+              : Container(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _controller.value.isPlaying
+                  ? _controller.pause()
+                  : _controller.play();
+            });
+          },
+          child: Icon(
+            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+}

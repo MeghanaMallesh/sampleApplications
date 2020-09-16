@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/my_homepage.dart';
+import 'package:emoji_picker/emoji_picker.dart';
+import 'package:login/widget.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Colors.grey,
-        primaryIconTheme: IconThemeData(color: Colors.grey),
-        primarySwatch: Colors.blue,
-        errorColor: Colors.yellow,
+      title: "Flutter Emoji Picker Example",
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Emoji Picker Example"),
+        ),
+        body: MainPage(),
       ),
-       home: MyHomePage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  MainPageState createState() => new MainPageState();
+}
+
+class MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    body:Container(
+    child:InkWell(
+      child:Text("uuuuuuuuuuuuuu"),
+      onTap: (){
+    
+       Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => new CustomBottomNavigationBar()));},
+    ),),
     );
   }
 }
