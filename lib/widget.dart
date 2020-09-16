@@ -1,243 +1,311 @@
-/*import 'package:flutter/material.dart';
-import 'package:emoji_picker/emoji_picker.dart';
-import 'package:image_crop/image_crop.dart';
-//void main() => runApp(MyApp());
-
-class MyApp1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Flutter Emoji Picker Example",
-      home: Scaffold(
-        appBar: AppBar(
-
-          title: //Row(
-           // children: <Widget>[
-           //   Icon(Icons.close)
-
-           // ],
-        //  )
-          Text("Flutter Emoji Picker Example"),
-        ),
-        body: MainPage(),
-      ),
-    );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  MainPageState createState() => new MainPageState();
-}
-
-class MainPageState extends State<MainPage> {
-  final cropKey = GlobalKey<CropState>();
-
-  @override
-  Widget build(BuildContext context) {
-     return Container(
-      color: Colors.black,
-      padding: const EdgeInsets.all(20.0),
-    //  child: Crop(
-     //   key: cropKey,
-      child:Image.network(
-       'https://picsum.photos/250?image=9'),
-       // aspectRatio:1.3/ 2.0,
-      
-  );
-  }
-}*/
-//import 'package:csapp/screens/Home_Page.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix1;
-import 'package:image_picker/image_picker.dart' as prefix0;
-import 'package:login/test.dart';
+import 'package:flutter/painting.dart';
 
-import 'dart:io';
-import 'package:path/path.dart' as p;
-import 'package:image_picker/image_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
-import 'package:image_crop/image_crop.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
+//import 'package:sapp/screens/Widgets/CustomBottomNavigationBar.dart';
+
+class FollowerPage extends StatefulWidget {
+ 
   @override
-  _CustomBottomNavigationBarState createState() =>
-      _CustomBottomNavigationBarState();
+  _FollowerPageState createState() => _FollowerPageState();
 }
-int _index = 0;
-final cropKey = GlobalKey<CropState>();
- class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-   
- @override
-  void initState() {
-  super.initState();
-   }
- bool userNameData = false;
-   _loadCounter() async {
-      Navigator.push(context,
-          new MaterialPageRoute(builder: (context) => new VideoApp()));
-  /*  SharedPreferences prefs = await SharedPreferences.getInstance();
-  //  String username = (prefs.getString("user_name"));
-    String id= (prefs.getString("id"));
-    
-    if (id == null || id == ''){
-     Navigator.push(context,
-          new MaterialPageRoute(builder: (context) => new SignInPage()));
-    } else {
-     // Navigator.pop(context);
-       Navigator.push(context,
-          new MaterialPageRoute(builder: (context) => new MyaccPage(data: username,)));
-            }*/
- }
-      _loadCounte() async {
-  /*  SharedPreferences prefs = await SharedPreferences.getInstance();
-   String id= (prefs.getString("id"));
-     if( (id == null || id == '')) {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new SignInPage()));*/
-    //} else {
-    _settingModalBottomSheet(context);
-    }
+
+class _FollowerPageState extends State<FollowerPage> {
   
 
-  File _image;
-  getImageFile(prefix0.ImageSource source) async {
-    var image = await ImagePicker.pickImage(source: source);
-   /*  Crop(
-        key: cropKey,
-         image: FileImage(image),
-        aspectRatio: 2.0 / 3.0,
-     );*/
-    /*  File croppedFile = await ImageCropper.cropImage(
-      sourcePath: image.path,
-      ratioX: 1.0,
-      ratioY: 1.0,
-      maxWidth: 512,g:
-      g:
-      maxHeight: 512,
-    );*/
-    File croppedFile = await ImageCropper.cropImage(
-      sourcePath: image.path,
-     maxHeight:450,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        //CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9
-      ],
-      androidUiSettings: AndroidUiSettings(
-          toolbarTitle: 'Cropper',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false),
-      iosUiSettings: IOSUiSettings(
-        minimumAspectRatio: 1.0,
-      )
-    );
-    
-    setState(() {
-      _image =croppedFile;
-    });
 
-    if (_image == null) {
-     /* Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );*/
-    } else {
-     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => VideoApp (),
-        ),
-      );
-    }
+   @override
+  void initState() {
+    super.initState();
+  
   }
 
- 
+  
 
   @override
   Widget build(BuildContext context) {
- return 
-  Container(
-   
-  child: BottomNavigationBar(
-  currentIndex: _index,
-   onTap: (newIndex) => checkMe(newIndex),
-   type: BottomNavigationBarType.fixed,
-            items: [
-BottomNavigationBarItem(icon: Icon(Icons.home,
-color:Colors.grey,
-), title: Padding(padding: EdgeInsets.all(0))),
-BottomNavigationBarItem(icon: Icon(Icons.add_circle,
-color: Colors.grey,
-), title: Padding(padding: EdgeInsets.all(0))),
-BottomNavigationBarItem(icon: Icon(Icons.search,
-color: Colors.grey,
-), title: Padding(padding: EdgeInsets.all(0))),
-BottomNavigationBarItem(icon: Icon(Icons.person,
-color: Colors.grey,
-), title: Padding(padding: EdgeInsets.all(0))),
-            ],
-   ), );
+    return new Scaffold(
+      // appBar: topBar,
+      appBar: AppBar(
+        actions: <Widget>[
+          // action button
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/settings');
+              // _select(choices[0]);
+            },
+          ),
+          // home:DefalutTabController(
+          //  length:2,
+
+/*bottom: TabBar(
+  tabs:[
+    Tab(icon:Icon(Icons.settings,)),
+    Tab(icon:Icon(Icons.settings,)),*/
+        ],
+      ),
+      body:
+      // SingleChildScrollView(
+       Container(
+   //       height: 600,
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                /* Container(
+                  height:165,
+                child:  Column(
+           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+          Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Container(
+                            height: 60.0,
+                            width: 60.0,
+                            decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: new DecorationImage(
+                                 fit: BoxFit.fill,
+                            image: new NetworkImage(
+                                'https://picsum.photos/250?image',
+                            ),
+                              )
+                            ),
+                          ),
+                          Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        
+                          children:<Widget>[
+                        new Text(
+                          "Itis just a printing image with the flow and ",
+                          style:TextStyle(fontWeight: FontWeight.normal,color: Colors.black,),
+                        ),
+                        SizedBox(
+                          height:5,
+                        ),
+                        new Text(
+                          "network image profile.",
+                          style:TextStyle(fontWeight: FontWeight.normal),
+                        ),
+                       
+                        ButtonTheme(
+                       minWidth: 20.0,
+                         height: 20.0,
+                         child: RaisedButton(
+                      onPressed:(){}, 
+                      textColor: Colors.blue,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.blue,
+            width: 1,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(40)),
+  
+                     padding: const EdgeInsets.all(3.0),
+                      child: new Text(' Edit Profile ',
+                        style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Colors.blue,
+                      fontSize: 15.0,),
+                      ),
+                    ),),],),],),*/
+
+                //Row(
+                // mainAxisAlignment:MainAxisAlignment.spaceAround,
+                //children: <Widget>[
+                //Row(
+                // mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                //children: <Widget>[
+                /* Text('10',style: TextStyle(color: Colors.grey,fontSize: 18),),
+                        SizedBox(height: 2,),
+                             // FlatButton(
+                               new InkWell(
+      child: Text('Posts',style: TextStyle(color: Colors.grey,fontSize: 15),),
+        // onPressed: () {
+          onTap:(){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>MyaccPage()),
+                                 );},),*/
+                // },
+                //  ),
+                /* Text('10',style: TextStyle(color: Colors.grey,fontSize: 18),),
+                           SizedBox(height: 5,),
+                            new InkWell(
+                          child:Text('Posts',style: TextStyle(color: Colors.grey,fontSize: 14,),),
+                           onTap: () {}, ),*/
+                // ],),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          '100',
+                          style: TextStyle(color: Colors.grey, fontSize: 18),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        new InkWell(
+                          child: Text(
+                            'Followers',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
+                          ),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Text(
+                          '200',
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        new InkWell(
+                          child: Text(
+                            'Following',
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 20),
+                Column(
+                  children: <Widget>[
+                    Container(
+                 //     width: 470.0,
+                 //     height: 440.0,
+                      child: ListView.builder(
+                      itemCount: 1, //items.length,
+                        
+                   //       _follow.length,
+                        itemBuilder: (context, index) {
+                     //   {FollowerPage(_follow[index]);
+                          return ListTile(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    new Container(
+                                      height: 50.0,
+                                      width: 50.0,
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image: new NetworkImage(
+                                              'https://picsum.photos/250?image',
+                                            ),
+                                          )),
+                                    ),
+                                    new SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          new Text(
+                                            //    data,
+                                            "Mohanmahan",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          new Text(
+                                            "Following",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.grey,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ]),
+                                  ],
+                                ),
+                                // SizedBox(width:60,),
+
+                                ButtonTheme(
+                                  minWidth: 20.0,
+                                  height: 20.0,
+                                  child: RaisedButton(
+                                    onPressed: () {},
+                                    textColor: Colors.blue,
+                                    color: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.blue,
+                                            width: 1,
+                                            style: BorderStyle.solid),
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: new Text(
+                                      '   Following   ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.blue,
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      
+  //    bottomNavigationBar: CustomBottomNavigationBar(),
+      /* bottomNavigationBar: BottomNavigationBar(
+       currentIndex: 0, 
+       items: [
+         BottomNavigationBarItem(
+           icon: new Icon(Icons.home,color: Colors.blue,size: 20,),
+           title: new Text('Home'),
+         ),
+         BottomNavigationBarItem(
+           icon: new Icon(Icons.add_circle,color: Colors.blue,size:20,),
+           title: new Text('Create'),
+         ),
+         BottomNavigationBarItem(
+           icon: Icon(Icons.person,color: Colors.blue,size:20,),
+           title: Text('My Account')
+         )
+       ],
+     ),*/
+    );
   }
-  void _settingModalBottomSheet(context) {
-                             showModalBottomSheet(
-                                 context: context,
-                                 builder: (BuildContext bc) {
-                                   return Container(
-                                     child: new Wrap(
-                                       children: <Widget>[
-                                         new ListTile(
-                                             leading: new Icon(Icons.photo_library),
-                                             title: new Text('Gallery'),
-                                             onTap: () {
-                                              Navigator.pop(context);
-                                               getImageFile(ImageSource.gallery);
-                                             }),
-                                         ListTile(
-                                           leading: new Icon(Icons.camera),
-                                           title: new Text('Camera'),
-                                           onTap: () {
-                                             Navigator.pop(context);
-                                             getImageFile(ImageSource.camera);
-                                           },
-                                         ),
-                                       ],
-                                     ),
-                                   );
-                                 });
-                           }
-              
-           
-checkMe(index){
- // if((index != _index)||(index == 1)){//||(index == 2)){
-setState(() => _index = index);
-switch(index){
-  case 0:
- //  Navigator.pop(context);
-  // Navigator.of(context).push( new MaterialPageRoute(builder: (context) => new HomePage())); 
-   break;
-  case 1:
-  if(index == _index){
-  _loadCounte();
-  }
- break;
- case 2:
- //if(index == _index){
-  // Navigator.pop(context);
-// Navigator.of(context).push( new MaterialPageRoute(builder: (context) => new SearchPage()));
-// }
-  break;
- case 3:
- _loadCounter();
- break;
- //default:Navigator.of(context).push( new MaterialPageRoute(builder: (context) => new HomePage()));
 }
-}
- }
-//}
